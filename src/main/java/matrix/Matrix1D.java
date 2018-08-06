@@ -1,6 +1,6 @@
 package matrix;
 
-public class Matrix2D {
+public class Matrix1D {
     
  
     private int rowCount;
@@ -9,16 +9,16 @@ public class Matrix2D {
 
     
 
-    Matrix2D(int row, int col) throws MatrixIndexException {
+    Matrix1D(int row, int col) throws MatrixIndexException {
         if (row <= 0 || col <= 0) {
             throw new MatrixIndexException("Недопустимый размер матрицы.");
         }
         this.rowCount = row;
         this.colCount = col;
-        data = new int[row * colCount + col];
+        data = new int[row * col];
     }
 
-    Matrix2D(Matrix2D matrix) {
+    Matrix1D(Matrix1D matrix) {
 
         this.rowCount = matrix.getRowCount();
         this.colCount = matrix.getColCount();
@@ -66,7 +66,7 @@ public class Matrix2D {
 
     @Override
     public boolean equals(Object obj) {
-        Matrix2D m = (Matrix2D) obj;
+        Matrix1D m = (Matrix1D) obj;
 
         if (m.getRowCount() != rowCount || m.getColCount() != colCount) {
             return false;

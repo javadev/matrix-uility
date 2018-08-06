@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 
 public class MatrixUtils {
 
-    public static void fillByRandom(Matrix2D m) {
+    public static void fillByRandom(Matrix1D m) {
         int rowCount = m.getRowCount();
         int colCount = m.getColCount();
         Random random = new Random();
@@ -25,7 +25,7 @@ public class MatrixUtils {
         }
     }
 
-    public static void fillByNumber(Matrix2D m, int number) {
+    public static void fillByNumber(Matrix1D m, int number) {
         int rowCount = m.getRowCount();
         int colCount = m.getColCount();
 
@@ -45,14 +45,14 @@ public class MatrixUtils {
 
     }
 
-    public static Matrix2D fillByKeyboard() {
+    public static Matrix1D fillByKeyboard() {
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter The Number Of Matrix Rows:");
         int rowCount = scan.nextInt();
         System.out.println("Enter The Number Of Matrix Columns:");
         int colCount = scan.nextInt();
         try {
-            Matrix2D m = new Matrix2D(rowCount, colCount);
+            Matrix1D m = new Matrix1D(rowCount, colCount);
             System.out.println("Enter Matrix Data:");
             for (int i = 1; i <= rowCount; i++) {
                 for (int j = 1; j <= colCount; j++) {
@@ -70,7 +70,7 @@ public class MatrixUtils {
 
     }
     
-    public static Matrix2D MatrixMultiple(Matrix2D a, Matrix2D b) throws MatrixIndexException {
+    public static Matrix1D MatrixMultiple(Matrix1D a, Matrix1D b) throws MatrixIndexException {
        
         int aRows = a.getRowCount();
         int aColumns = a.getColCount();
@@ -81,7 +81,7 @@ public class MatrixUtils {
             throw new IllegalArgumentException("A:Rows: " + aColumns + " did not match B:Columns " + bRows + ".");
         }
 
-        Matrix2D c = new Matrix2D(aRows, bColumns);
+        Matrix1D c = new Matrix1D(aRows, bColumns);
         for (int i = 0; i < aRows; i++) {
             for (int j = 0; j < bColumns; j++) {
                 c.put(i+1,j+1,0);
