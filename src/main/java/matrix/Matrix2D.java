@@ -64,48 +64,6 @@ public class Matrix2D extends Matrix {
         return colCount;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        Matrix2D m = (Matrix2D) obj;
-
-        if (m.getRowCount() != rowCount || m.getColCount() != colCount) {
-            return false;
-        }
-
-        for (int i = 0; i < rowCount; i++) {
-            for (int j = 0; j < colCount; j++) {
-                if (data[i * colCount + j] != m.data[i * colCount + j]) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder out = new StringBuilder();
-        out.append("Matrix:\n[ ");
-        for (int i = 0; i < rowCount; i++) {
-            if (i != 0) {
-                out.append("\n");
-                out.append("  ");
-            }
-            for (int j = 0; j < colCount; j++) {
-                out.append(data[i][j]);
-                if (j == colCount - 1) {
-                    continue;
-                }
-                for (int k = 0; k < getMaxLength() - getIntLength(data[i][j]) + 2; k++) {
-                    out.append(" ");
-                }
-            }
-        }
-        out.append("  ]");
-        return out.toString();
-    }
-
     private int getMaxLength() {
         int max = Integer.MIN_VALUE;
         for (int i = 0; i < rowCount; i++) {

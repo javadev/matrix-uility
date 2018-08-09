@@ -64,39 +64,6 @@ public class Matrix1D extends Matrix {
         return colCount;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        Matrix1D m = (Matrix1D) obj;
-
-        if (m.getRowCount() != rowCount || m.getColCount() != colCount) {
-            return false;
-        }
-
-        for (int i = 0; i < rowCount; i++) {
-            for (int j = 0; j < colCount; j++) {
-                if (data[i * colCount + j] != m.data[i * colCount + j]) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder out = new StringBuilder();
-        out.append("Matrix:\n[ ");
-        for (int i = 0; i < rowCount * colCount; i++) {
-                out.append(data[i]);
-                if (i != rowCount * colCount - 1) {
-                    out.append(" ");
-                }
-        }
-        out.append(" ]");
-        return out.toString();
-    }
-
     private int getMaxLength() {
         int max = Integer.MIN_VALUE;
         for (int i = 0; i < rowCount; i++) {

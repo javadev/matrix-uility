@@ -23,6 +23,9 @@ public abstract class Matrix {
             for (int j = 0; j < getColCount(); j++) {
                 try {
                     out.append(get(i, j));
+                    if (j != getColCount() - 1) {
+                        out.append(" ");
+                    }
                 } catch (MatrixIndexException e) {
 
                 }
