@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Main {
 
-    public static void main(String[] args) throws MatrixIndexException {
-        Matrix m1 = new Matrix2D(100, 100);
-        Matrix m2 = new Matrix2D(100, 100);
+    public static void main(String[] args) throws MatrixIndexException, java.io.IOException {
+        Matrix m1 = new LargeIntegerMatrix("data1.txt", 100, 100);
+        Matrix m2 = new LargeIntegerMatrix("data2.txt", 100, 100);
         
         MatrixUtils.fillByRandom(m1);
         MatrixUtils.fillByRandom(m2);
