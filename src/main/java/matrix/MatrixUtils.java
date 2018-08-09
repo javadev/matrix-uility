@@ -9,7 +9,7 @@ import java.io.FileWriter;
 
 public class MatrixUtils {
 
-    public static void fillByRandom(Matrix1D m) {
+    public static void fillByRandom(Matrix m) {
         int rowCount = m.getRowCount();
         int colCount = m.getColCount();
         Random random = new Random();
@@ -28,7 +28,7 @@ public class MatrixUtils {
         }
     }
 
-    public static void fillByNumber(Matrix1D m, int number) {
+    public static void fillByNumber(Matrix m, int number) {
         int rowCount = m.getRowCount();
         int colCount = m.getColCount();
 
@@ -48,14 +48,14 @@ public class MatrixUtils {
 
     }
 
-    public static Matrix1D fillByKeyboard() {
+    public static Matrix fillByKeyboard() {
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter The Number Of Matrix Rows:");
         int rowCount = scan.nextInt();
         System.out.println("Enter The Number Of Matrix Columns:");
         int colCount = scan.nextInt();
         try {
-            Matrix1D m = new Matrix1D(rowCount, colCount);
+            Matrix m = new Matrix1D(rowCount, colCount);
             System.out.println("Enter Matrix Data:");
             for (int i = 1; i <= rowCount; i++) {
                 for (int j = 1; j <= colCount; j++) {
@@ -73,7 +73,7 @@ public class MatrixUtils {
 
     }
     
-    public static Matrix1D MatrixMultiple(Matrix1D a, Matrix1D b) throws MatrixIndexException {
+    public static Matrix matrixMultiple(Matrix a, Matrix b) throws MatrixIndexException {
        
         int aRows = a.getRowCount();
         int aColumns = a.getColCount();
@@ -84,7 +84,7 @@ public class MatrixUtils {
             throw new IllegalArgumentException("A:Rows: " + aColumns + " did not match B:Columns " + bRows + ".");
         }
 
-        Matrix1D c = new Matrix1D(aRows, bColumns);
+        Matrix c = new Matrix1D(aRows, bColumns);
         for (int i = 0; i < aRows; i++) {
             for (int j = 0; j < bColumns; j++) {
                 c.put(i+1,j+1,0);
@@ -102,7 +102,7 @@ public class MatrixUtils {
         return c;   
     }
 
-    public static void writeMatrixToFile(Matrix1D m, String filename) {
+    public static void writeMatrixToFile(Matrix m, String filename) {
 
         try(FileWriter writer = new FileWriter(filename, false)){
             String strForWrite = "";
@@ -129,7 +129,7 @@ public class MatrixUtils {
         }
     }
 
-    public static Matrix1D loadMatrixFromFile(String filename) {
+    public static Matrix loadMatrixFromFile(String filename) {
 
         try(FileReader reader = new FileReader(filename)) {
             String strFromFile = "";
@@ -139,7 +139,7 @@ public class MatrixUtils {
             }
 
             String[] arr = strFromFile.split(" |\n");
-            Matrix1D result = new Matrix1D(Integer.valueOf(arr[0]), Integer.valueOf(arr[1]));
+            Matrix result = new Matrix1D(Integer.valueOf(arr[0]), Integer.valueOf(arr[1]));
 
             int row = 1;
             int col = 1;
