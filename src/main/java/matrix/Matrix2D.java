@@ -1,6 +1,6 @@
 package matrix;
 
-public class Matrix1D {
+public class Matrix2D {
     
  
     private int rowCount;
@@ -9,7 +9,7 @@ public class Matrix1D {
 
     
 
-    Matrix1D(int row, int col) throws MatrixIndexException {
+    Matrix2D(int row, int col) throws MatrixIndexException {
         if (row <= 0 || col <= 0) {
             throw new MatrixIndexException("Недопустимый размер матрицы.");
         }
@@ -18,7 +18,7 @@ public class Matrix1D {
         data = new int[row * col];
     }
 
-    Matrix1D(Matrix1D matrix) {
+    Matrix2D(Matrix2D matrix) {
 
         this.rowCount = matrix.getRowCount();
         this.colCount = matrix.getColCount();
@@ -66,7 +66,7 @@ public class Matrix1D {
 
     @Override
     public boolean equals(Object obj) {
-        Matrix1D m = (Matrix1D) obj;
+        Matrix2D m = (Matrix2D) obj;
 
         if (m.getRowCount() != rowCount || m.getColCount() != colCount) {
             return false;
@@ -87,13 +87,22 @@ public class Matrix1D {
     public String toString() {
         StringBuilder out = new StringBuilder();
         out.append("Matrix:\n[ ");
-        for (int i = 0; i < rowCount * colCount; i++) {
-                out.append(data[i]);
-                if (i != rowCount * colCount - 1) {
+        for (int i = 0; i < rowCount; i++) {
+            if (i != 0) {
+                out.append("\n");
+                out.append("  ");
+            }
+            for (int j = 0; j < colCount; j++) {
+                out.append(data[i * colCount + j]);
+                if (j == colCount - 1) {
+                    continue;
+                }
+                for (int k = 0; k < getMaxLength() - getIntLength(data[i * colCount + j]) + 2; k++) {
                     out.append(" ");
                 }
+            }
         }
-        out.append(" ]");
+        out.append("  ]");
         return out.toString();
     }
 
