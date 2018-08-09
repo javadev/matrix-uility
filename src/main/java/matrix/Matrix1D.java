@@ -1,15 +1,12 @@
 package matrix;
 
 public class Matrix1D extends Matrix {
-    
  
     private int rowCount;
     private int colCount;
     private int[] data;
 
-    
-
-    Matrix1D(int row, int col) throws MatrixIndexException {
+    public Matrix1D(int row, int col) throws MatrixIndexException {
         if (row <= 0 || col <= 0) {
             throw new MatrixIndexException("Недопустимый размер матрицы.");
         }
@@ -18,7 +15,7 @@ public class Matrix1D extends Matrix {
         data = new int[row * col];
     }
 
-    Matrix1D(Matrix1D matrix) {
+    public Matrix1D(Matrix1D matrix) {
 
         this.rowCount = matrix.getRowCount();
         this.colCount = matrix.getColCount();
@@ -30,8 +27,6 @@ public class Matrix1D extends Matrix {
             }
         }
     }
-
-   
 
     public int get(int i, int j) throws MatrixIndexException {
         if (i < 1 || i > rowCount) {  
@@ -63,22 +58,4 @@ public class Matrix1D extends Matrix {
     public int getColCount() {
         return colCount;
     }
-
-    private int getMaxLength() {
-        int max = Integer.MIN_VALUE;
-        for (int i = 0; i < rowCount; i++) {
-            for (int j = 0; j < colCount; j++) {
-                int k = data[i * colCount + j];
-                if (k > max) {
-                    max = k;
-                }
-            }
-        }
-        return getIntLength(max);
-    }
-
-    private int getIntLength(int i) {
-        return String.valueOf(i).length();
-    }
-
 }

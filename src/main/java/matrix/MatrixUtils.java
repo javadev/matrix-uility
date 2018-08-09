@@ -104,7 +104,7 @@ public class MatrixUtils {
 
     public static void writeMatrixToFile(Matrix m, String filename) {
 
-        try(FileWriter writer = new FileWriter(filename, false)){
+        try (FileWriter writer = new FileWriter(filename, false)){
             String strForWrite = "";
             
             writer.write(String.valueOf(m.getRowCount()));
@@ -115,7 +115,7 @@ public class MatrixUtils {
             for (int i = 1; i <= m.getRowCount(); i++){
                 for (int j = 1; j <= m.getColCount(); j++){
                     
-                    strForWrite += m.get(i,j) + " ";
+                    strForWrite += m.get(i, j) + " ";
                 }
                 strForWrite += "\n";
             }
@@ -131,7 +131,7 @@ public class MatrixUtils {
 
     public static Matrix loadMatrixFromFile(String filename) {
 
-        try(FileReader reader = new FileReader(filename)) {
+        try (FileReader reader = new FileReader(filename)) {
             String strFromFile = "";
 
             while (reader.ready()) {
@@ -145,7 +145,7 @@ public class MatrixUtils {
             int col = 1;
 
             for (int i = 2; i < arr.length; i++){
-                if (!arr[i].equals("")){
+                if (!arr[i].equals("")) {
                     result.put(row, col, Integer.valueOf(arr[i]));
                     col++;
                     if (col == result.getColCount() + 1){
