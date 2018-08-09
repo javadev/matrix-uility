@@ -5,7 +5,7 @@ public class Matrix2D extends Matrix {
  
     private int rowCount;
     private int colCount;
-    private int[] data;
+    private int[][] data;
 
     
 
@@ -15,18 +15,18 @@ public class Matrix2D extends Matrix {
         }
         this.rowCount = row;
         this.colCount = col;
-        data = new int[row * col];
+        data = new int[row][col];
     }
 
     Matrix2D(Matrix2D matrix) {
 
         this.rowCount = matrix.getRowCount();
         this.colCount = matrix.getColCount();
-        data = new int[rowCount * colCount];
+        data = new int[rowCount][colCount];
 
         for (int i = 1; i < rowCount; i++) { 
             for (int j = 1; j < colCount; j++) {
-                data[i * colCount + j] = matrix.data[i * colCount + j];
+                data[i][j] = matrix.data[i][j];
             }
         }
     }
@@ -41,7 +41,7 @@ public class Matrix2D extends Matrix {
             throw new MatrixIndexException("Недопустимое число столбцов: " + j);
         }
         
-        return data [(i-1) * colCount + j-1];
+        return data [i-1][j-1];
     }
 
     public void put(int i, int j, int value) throws MatrixIndexException {
@@ -51,7 +51,7 @@ public class Matrix2D extends Matrix {
         if (j < 1 || j > colCount) {
             throw new MatrixIndexException("Недопустимое число столбцов: " + j);
         }
-        data[(i-1) * colCount + j-1] = value;
+        data[i-1][j-1] = value;
 
 
     }
@@ -93,11 +93,11 @@ public class Matrix2D extends Matrix {
                 out.append("  ");
             }
             for (int j = 0; j < colCount; j++) {
-                out.append(data[i * colCount + j]);
+                out.append(data[i][j]);
                 if (j == colCount - 1) {
                     continue;
                 }
-                for (int k = 0; k < getMaxLength() - getIntLength(data[i * colCount + j]) + 2; k++) {
+                for (int k = 0; k < getMaxLength() - getIntLength(data[i][j]) + 2; k++) {
                     out.append(" ");
                 }
             }
@@ -110,7 +110,7 @@ public class Matrix2D extends Matrix {
         int max = Integer.MIN_VALUE;
         for (int i = 0; i < rowCount; i++) {
             for (int j = 0; j < colCount; j++) {
-                int k = data[i * colCount + j];
+                int k = data[i][j];
                 if (k > max) {
                     max = k;
                 }
