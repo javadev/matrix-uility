@@ -6,8 +6,8 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) throws MatrixIndexException {
-        Matrix m1 = new Matrix1D(3, 3);
-        Matrix m2 = new Matrix1D(3, 3);
+        Matrix m1 = new Matrix1D(100, 100);
+        Matrix m2 = new Matrix1D(100, 100);
         
         MatrixUtils.fillByRandom(m1);
         MatrixUtils.fillByRandom(m2);
