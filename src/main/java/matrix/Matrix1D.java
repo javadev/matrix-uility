@@ -1,6 +1,6 @@
 package matrix;
 
-public class Matrix1D {
+public class Matrix1D extends Matrix {
     
  
     private int rowCount;
@@ -44,7 +44,7 @@ public class Matrix1D {
         return data [(i-1) * colCount + j-1];
     }
 
-    void put(int i, int j, int value) throws MatrixIndexException {
+    public void put(int i, int j, int value) throws MatrixIndexException {
         if (i < 1 || i > rowCount) {
             throw new MatrixIndexException("Недопустимое число строк: " + i);
         }

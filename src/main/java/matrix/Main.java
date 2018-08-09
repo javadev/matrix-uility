@@ -14,5 +14,8 @@ public class Main extends Exception {
         Matrix1D m = MatrixUtils.MatrixMultiple(m1, m2);
         
         System.out.println(m.toString());
+        MatrixUtils.writeMatrixToFile(m, "file.txt");
+        Matrix1D m3 = MatrixUtils.loadMatrixFromFile("file.txt");
+        System.out.println(m3.toString());
     }
 }

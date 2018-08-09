@@ -3,6 +3,7 @@ package matrix;
 import java.util.Random;
 import java.util.Scanner;
 import java.io.InputStreamReader;
+import java.io.IOException;
 import java.io.FileReader;
 import java.io.FileWriter;
 
@@ -111,8 +112,8 @@ public class MatrixUtils {
             writer.write(String.valueOf(m.getColCount()));
             writer.write("\n");
 
-            for (int i = 1; i < m.getRowCount(); i++){
-                for (int j = 1; j < m.getColCount(); j++){
+            for (int i = 1; i <= m.getRowCount(); i++){
+                for (int j = 1; j <= m.getColCount(); j++){
                     
                     strForWrite += m.get(i,j) + " ";
                 }
@@ -128,7 +129,7 @@ public class MatrixUtils {
         }
     }
 
-    public Matrix1D loadMatrixFromFile(String filename) {
+    public static Matrix1D loadMatrixFromFile(String filename) {
 
         try(FileReader reader = new FileReader(filename)) {
             String strFromFile = "";
@@ -140,15 +141,15 @@ public class MatrixUtils {
             String[] arr = strFromFile.split(" |\n");
             Matrix1D result = new Matrix1D(Integer.valueOf(arr[0]), Integer.valueOf(arr[1]));
 
-            int row = 0;
-            int col = 0;
+            int row = 1;
+            int col = 1;
 
             for (int i = 2; i < arr.length; i++){
                 if (!arr[i].equals("")){
-                    result.put(row, col) = Integer.valueOf(arr[i]);
+                    result.put(row, col, Integer.valueOf(arr[i]));
                     col++;
-                    if (col == result.getColCount()){
-                        col = 0;
+                    if (col == result.getColCount() + 1){
+                        col = 1;
                         row++;
                     }
                 }
