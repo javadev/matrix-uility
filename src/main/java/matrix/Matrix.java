@@ -11,7 +11,7 @@ public abstract class Matrix {
     public abstract int getColCount();
     
     @Override
-    public String toString() {    
+    public String toString() {
         StringBuilder out = new StringBuilder();
         out.append("Matrix:\n[ ");
 
@@ -22,7 +22,7 @@ public abstract class Matrix {
             }
             for (int j = 0; j < getColCount(); j++) {
                 try {
-                    out.append(get(i, j));
+                    out.append(get(i + 1, j + 1));
                     if (j != getColCount() - 1) {
                         out.append(" ");
                     }
@@ -38,6 +38,24 @@ public abstract class Matrix {
         }
         return out.toString();
     }   
+
+    public String toStringOneColumn() {
+        StringBuilder out = new StringBuilder();
+        out.append("Matrix:\n[ \n");
+
+        for (int i = 0; i < getRowCount(); i++) {
+            for (int j = 0; j < getColCount(); j++) {
+                try {
+                    out.append(get(i + 1, j + 1));
+                    out.append("\n");
+                } catch (MatrixIndexException e) {
+
+                }
+            }
+        }
+        out.append("]");
+        return out.toString();
+    }
 
     @Override
     public boolean equals(Object obj) {
