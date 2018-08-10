@@ -1,13 +1,10 @@
 package matrix;
 
-import java.util.LinkedList;
-import java.util.List;
-
 public class Main {
 
     public static void main(String[] args) throws MatrixIndexException, java.io.IOException {
-        Matrix m1 = new LargeIntegerMatrix("data1.txt", 3, 3);
-        Matrix m2 = new LargeIntegerMatrix("data2.txt", 3, 3);
+        Matrix m1 = new Matrix1D(3, 3);
+        Matrix m2 = new Matrix1D(3, 3);
         
         MatrixUtils.fillByRandom(m1);
         MatrixUtils.fillByRandom(m2);
