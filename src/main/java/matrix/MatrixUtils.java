@@ -2,10 +2,12 @@ package matrix;
 
 import java.util.Random;
 import java.util.Scanner;
-import java.io.InputStreamReader;
+import java.io.BufferedInputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 
 public class MatrixUtils {
 
@@ -104,24 +106,16 @@ public class MatrixUtils {
 
     public static void writeMatrixToFile(Matrix m, String filename) {
 
-        try (FileWriter writer = new FileWriter(filename, false)){
-            String strForWrite = "";
-            
-            writer.write(String.valueOf(m.getRowCount()));
-            writer.write("\n");
-            writer.write(String.valueOf(m.getColCount()));
-            writer.write("\n");
-
+        try (FileOutputStream fileOutputStream = new FileOutputStream(filename);
+            DataOutputStream dataOutputStream = new DataOutputStream(fileOutputStream)) {
+            dataOutputStream.writeInt(m.getRowCount());
+            dataOutputStream.writeInt(m.getColCount());
             for (int i = 1; i <= m.getRowCount(); i++){
                 for (int j = 1; j <= m.getColCount(); j++){
-                    
-                    strForWrite += m.get(i, j) + " ";
+                    dataOutputStream.writeInt(m.get(i, j));
                 }
-                strForWrite += "\n";
             }
-
-            writer.write(strForWrite);
-            writer.flush();
+            dataOutputStream.flush();
         } catch (IOException e) {
             e.printStackTrace();
         } catch(MatrixIndexException e) {
@@ -131,34 +125,25 @@ public class MatrixUtils {
 
     public static Matrix loadMatrixFromFile(String filename) {
 
-        try (FileReader reader = new FileReader(filename)) {
-            String strFromFile = "";
-
-            while (reader.ready()) {
-                strFromFile += (char) reader.read();
-            }
-
-            String[] arr = strFromFile.split(" |\n");
-            Matrix result = new Matrix1D(Integer.valueOf(arr[0]), Integer.valueOf(arr[1]));
-
+        try (FileInputStream fileInputStream = new FileInputStream(filename);
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
+            DataInputStream dataInputStream = new DataInputStream(bufferedInputStream)) {
+            int rowCount = dataInputStream.readInt();
+            int colCount = dataInputStream.readInt();
+            Matrix result = new Matrix1D(rowCount, colCount);
             int row = 1;
             int col = 1;
-
-            for (int i = 2; i < arr.length; i++){
-                if (!arr[i].equals("")) {
-                    result.put(row, col, Integer.valueOf(arr[i]));
-                    col++;
-                    if (col == result.getColCount() + 1){
-                        col = 1;
-                        row++;
-                    }
+            for (int i = 0; i < rowCount * colCount; i++){
+                result.put(row, col, dataInputStream.readInt());
+                col++;
+                if (col == result.getColCount() + 1){
+                    col = 1;
+                    row++;
                 }
             }
-
             return result;
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (MatrixIndexException | IOException ex) {
+            throw new RuntimeException(ex);
         }
-        return null;
     }
 }
