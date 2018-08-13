@@ -3,8 +3,8 @@ package matrix;
 public class Main {
 
     public static void main(String[] args) throws MatrixIndexException, java.io.IOException {
-        Matrix m1 = new Matrix1D(3, 3);
-        Matrix m2 = new Matrix1D(3, 3);
+        Matrix m1 = new RandomAccessFileMatrix("data1.bin", 3, 3);
+        Matrix m2 = new RandomAccessFileMatrix("data2.bin", 3, 3);
         
         MatrixUtils.fillByRandom(m1);
         MatrixUtils.fillByRandom(m2);
